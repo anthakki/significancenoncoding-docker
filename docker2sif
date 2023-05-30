@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# parse output file
+if [ "$1" = '-o' ]; then
+	dst="$2"
+	shift
+	shift
+fi
+
+# check usage
+if [ $# -lt 1 ]; then
+	echo "Usage: $(basename "$0") [-o output.sif] image [...]" >&2
+	exit 1
+fi
+
+# main conversion routine
+docker2sif() {
+	echo "singularity build '$2' docker-archive://<( docker save '$1' )" >&2
+
+	tmp="$( mktemp -p . )" || return "$?"
+	trap '{ rm -f "$tmp"; }' EXIT
+
+	docker save "$1" -o "$tmp" &&
+		singularity build "$2" "docker-archive://$tmp"
+}
+
+# process
+for src in "$@"; do
+	if [ -z "$dst" ]; then
+		docker2sif "$src" "$src.sif" || exit "$?"
+	else
+		docker2sif "$src" "$dst" || exit "$?"
+	fi
+done

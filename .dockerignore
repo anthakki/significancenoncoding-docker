@@ -1,0 +1,6 @@
+
+* 
+
+!bin/SignificanceNoncoding
+!lib/SignificanceNoncoding/*.jar
+!share/SignificanceNoncoding/*.*
