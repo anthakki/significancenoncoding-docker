@@ -12,16 +12,16 @@ Pull using Docker:
 
 Pull using Singularity:
 ```
-	singularity build docker://anthakki/significancenoncoding
+	singularity pull significancenoncoding.sif docker://anthakki/significancenoncoding
 ```
 
 ## Building the container
 
 Building the container requires [Docker](https://docs.docker.com/engine/install/), which requires privileged access, but it is possible to run this in a virtual machine (see the link).
 
-Building the tool requires [Java 8 SDK](https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html) (newer versions should also be ok), and using the `Makefile` requires [GNU make](https://www.gnu.org/software/make/) and [cURL](https://curl.se/). For Ubuntu Linux, you can install them:
+Building the tool requires [Java 8 SDK](https://www.oracle.com/java/technologies/javase/javase8u211-later-archive-downloads.html) (newer versions should also be ok), and using the `Makefile` requires [GNU make](https://www.gnu.org/software/make/), `patch`, and [cURL](https://curl.se/). For Ubuntu Linux, you can install them:
 ```
-	apt-get -y install curl openjdk-8-sdk-headless make
+	apt-get -y install curl openjdk-8-sdk-headless make patch
 ```
 
 To build the container, first run `make` to build the tool and then Docker to build your container:

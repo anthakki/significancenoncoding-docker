@@ -7,24 +7,20 @@ base_url = https://zenodo.org/record/5913867
 goog_url = https://storage.googleapis.com/noncoding_analysishg19
 
 app = SignificanceNoncoding
-
-downloads = share/$(app)/AnnotationFilesComplete.zip \
-	share/$(app)/UserManual.pdf \
-	src.zip
-subdirs = bin lib share
+subdirs := $(shell cat .dockerignore | sed -nE 's@^!([^/]*)(.*)$$@\1@p')
 
 all: download $(subdirs) chmod
 
 distclean: clean
-	rm -f $(downloads)
+	rm -f share/$(app)/AnnotationFilesComplete.zip share/$(app)/MutationTestFiles.zip share/$(app)/UserManual.pdf src.zip
+	@rmdir -p share/$(app) 2>/dev/null || true
 
 clean:
 	rm -f lib/$(app)/*
-	rm -r share/$(app)/*
 	rm -f src/$(app)/*
 	@rmdir -p lib/$(app) share/$(app) src/$(app) 2>/dev/null || true
 
-download: $(downloads)
+download: share/$(app)/AnnotationFilesComplete.zip share/$(app)/UserManual.pdf src.zip
 
 chmod:
 	chmod -R go=u-w $(subdirs)
