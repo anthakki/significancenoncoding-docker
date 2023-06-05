@@ -3,4 +3,5 @@
 
 !bin/SignificanceNoncoding
 !lib/SignificanceNoncoding/*.jar
-!share/SignificanceNoncoding/*.*
+!share/SignificanceNoncoding/AnnotationFilesComplete.zip
+!share/SignificanceNoncoding/UserManual.pdf

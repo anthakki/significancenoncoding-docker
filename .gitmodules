@@ -1,0 +1,3 @@
+[submodule "src/SignificanceNoncoding"]
+	path = src/SignificanceNoncoding
+	url = git@github.com:anthakki/significancenoncoding.git
