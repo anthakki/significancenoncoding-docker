@@ -11,7 +11,9 @@ RUN apt-get -y update && \
 
 # NB. filtering in Dockerfile.. otherwise we have multiple copies..
  # TODO: working chmod would be nice.. --chmod=go-w does nothing (only octal works)
-COPY . /SignificanceNoncoding/
+COPY share/ /SignificanceNoncoding/share/
+COPY bin/ /SignificanceNoncoding/bin/
+COPY lib/ /SignificanceNoncoding/lib/
 
 ENTRYPOINT ["/SignificanceNoncoding/bin/SignificanceNoncoding", \
 	"-jar_path", "/SignificanceNoncoding/lib/SignificanceNoncoding/SignificanceNoncoding.jar", \

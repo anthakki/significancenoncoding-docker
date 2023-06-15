@@ -17,7 +17,7 @@ distclean: clean
 
 clean:
 	rm -f lib/$(app)/*
-	$(MAKE) -C src/$(app)/
+	$(MAKE) -C src/$(app)/ clean
 	@rmdir -p lib/$(app) share/$(app) 2>/dev/null || true
 
 download: share/$(app)/AnnotationFilesComplete.zip share/$(app)/UserManual.pdf
